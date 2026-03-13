@@ -3,7 +3,7 @@ package com.example.demo;
 import com.example.demo.CountryService;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class CountryController {
