@@ -10,7 +10,7 @@ function App(){
 
   const loadCountry = async(name)=>{
 
-    const res = await api.get("/countries",{params:{name}});
+    const res = await api.get("/country",{params:{name}});
 
     setCountry(res.data[0]);
   };
