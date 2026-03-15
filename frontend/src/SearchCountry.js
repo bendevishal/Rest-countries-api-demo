@@ -4,28 +4,29 @@ export default function SearchCountry({ onSearch }) {
 
   const [country, setCountry] = useState("");
 
-  const handleSearch = () => {
-    if(country){
-      onSearch(country);
-    }
+  const handleChange = (e) => {
+
+    const value = e.target.value;
+
+    setCountry(value);
+
+    onSearch(value);
+
   };
 
-  return (
-    <div className="mb-4">
+  return(
+
+    <div className="mb-3">
 
       <input
-        className="form-control mb-2"
+        className="form-control"
         placeholder="Enter country name"
-        onChange={(e)=>setCountry(e.target.value)}
+        value={country}
+        onChange={handleChange}
       />
 
-      <button
-        className="btn btn-primary"
-        onClick={handleSearch}
-      >
-        Search
-      </button>
-
     </div>
+
   );
+
 }

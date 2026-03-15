@@ -2,7 +2,7 @@ export default function CountryCard({ country }) {
 
   if(!country) return null;
 
-  return (
+  return(
 
     <div className="card mt-3 p-3">
 
@@ -20,14 +20,15 @@ export default function CountryCard({ country }) {
 
       <p><b>Population:</b> {country.population}</p>
 
-      <p><b>Currency:</b>
-      {Object.values(country.currencies || {})[0]?.name}
+      <p>
+        <b>Currency:</b> {Object.values(country.currencies || {})[0]?.name}
       </p>
 
-      <p><b>Languages:</b>
-      {Object.values(country.languages || {}).join(", ")}
+      <p>
+        <b>Languages:</b> {Object.values(country.languages || {}).join(", ")}
       </p>
 
     </div>
+
   );
 }
