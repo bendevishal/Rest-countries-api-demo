@@ -1,32 +1,42 @@
 export default function CountryCard({ country }) {
 
-  if(!country) return null;
+  if (!country) return null;
 
-  return(
+  return (
 
-    <div className="card mt-3 p-3">
+    <div className="country-card card shadow-lg mt-4 p-4">
 
-      <img
-        src={country.flags.png}
-        alt="flag"
-        width="150"
-      />
+      <div className="row align-items-center">
 
-      <h3>{country.name.common}</h3>
+        <div className="col-md-4 text-center">
+          <img
+            src={country.flags.png}
+            alt="flag"
+            className="country-flag img-fluid"
+          />
+        </div>
 
-      <p><b>Capital:</b> {country.capital?.[0]}</p>
+        <div className="col-md-8">
 
-      <p><b>Region:</b> {country.region}</p>
+          <h3 className="country-title">{country.name.common}</h3>
 
-      <p><b>Population:</b> {country.population}</p>
+          <p><b>Capital:</b> {country.capital?.[0]}</p>
 
-      <p>
-        <b>Currency:</b> {Object.values(country.currencies || {})[0]?.name}
-      </p>
+          <p><b>Region:</b> {country.region}</p>
 
-      <p>
-        <b>Languages:</b> {Object.values(country.languages || {}).join(", ")}
-      </p>
+          <p><b>Population:</b> {country.population.toLocaleString()}</p>
+
+          <p>
+            <b>Currency:</b> {Object.values(country.currencies || {})[0]?.name}
+          </p>
+
+          <p>
+            <b>Languages:</b> {Object.values(country.languages || {}).join(", ")}
+          </p>
+
+        </div>
+
+      </div>
 
     </div>
 

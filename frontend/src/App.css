@@ -1,38 +1,132 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+/* App background */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #5f9cff, #6a5acd);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+/* Main container */
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  max-width: 1000px;
+}
+
+/* Title */
+h2 {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+/* Table styling */
+.table {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Table header */
+.table thead {
+  background: #4a6cf7;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* Table rows hover */
+.table tbody tr {
+  transition: all 0.25s ease;
 }
 
-@keyframes App-logo-spin {
+.table tbody tr:hover {
+  background: #f5f7ff;
+  transform: scale(1.01);
+}
+
+/* Flag images */
+.table img {
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+/* Alert styling */
+.alert {
+  border-radius: 8px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Country card styling */
+.country-card {
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 12px;
+  background: #f9f9ff;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+/* Smooth fade animation */
+.country-card {
+  animation: fadeIn 0.4s ease;
+}
+
+/* Animation */
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(10px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+
+/* Country card container */
+.country-card {
+  border-radius: 14px;
+  background: #ffffff;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+/* Hover effect */
+.country-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* Country flag */
+.country-flag {
+  width: 140px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Country name */
+.country-title {
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Text styling */
+.country-card p {
+  margin-bottom: 6px;
+  color: #555;
+}
+
+.app-wrapper{
+  min-height:100vh;
+  padding:40px;
+  transition: background 0.6s ease;
+}
+
+.container{
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
 }
