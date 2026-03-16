@@ -3,12 +3,33 @@ import api from "./api";
 import SearchCountry from "./SearchCountry";
 import CountryCard from "./CountryCard";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 function App(){
 
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState(null);
   const [error, setError] = useState("");
+
+  /* Background based on region */
+  const getBackground = (region) => {
+
+    switch(region){
+      case "Asia":
+        return "linear-gradient(135deg, #ff9a9e, #fad0c4)";
+      case "Europe":
+        return "linear-gradient(135deg, #a1c4fd, #c2e9fb)";
+      case "Africa":
+        return "linear-gradient(135deg, #fbc2eb, #a6c1ee)";
+      case "Americas":
+        return "linear-gradient(135deg, #84fab0, #8fd3f4)";
+      case "Oceania":
+        return "linear-gradient(135deg, #fccb90, #d57eeb)";
+      default:
+        return "linear-gradient(135deg, #5f9cff, #6a5acd)";
+    }
+
+  };
 
   const loadCountry = async (name) => {
 
@@ -28,9 +49,7 @@ function App(){
     catch(err){
 
       console.error(err);
-
       setError("❌ Country not found");
-
       setCountries([]);
 
     }
@@ -45,69 +64,79 @@ function App(){
 
   return(
 
-    <div className="container mt-4">
+    <div
+      className="app-wrapper"
+      style={{
+        background: getBackground(country?.region)
+      }}
+    >
 
-      <h2>🌍 Country Search</h2>
+      <div className="container mt-4">
 
-      <SearchCountry onSearch={loadCountry}/>
+        <h2 className="text-center mb-4">🌍 Country Search</h2>
 
-      {error && (
-        <div className="alert alert-danger">{error}</div>
-      )}
+        <SearchCountry onSearch={loadCountry}/>
 
-      {countries.length > 0 && (
+        {error && (
+          <div className="alert alert-danger">{error}</div>
+        )}
 
-        <table className="table table-bordered mt-3">
+        {countries.length > 0 && (
 
-          <thead>
+          <table className="table table-bordered table-hover mt-3">
 
-            <tr>
-              <th>Flag</th>
-              <th>Name</th>
-              <th>Capital</th>
-              <th>Region</th>
-              <th>Population</th>
-            </tr>
+            <thead>
 
-          </thead>
-
-          <tbody>
-
-            {countries.map(c => (
-
-              <tr
-                key={c.cca3}
-                onClick={() => selectCountry(c)}
-                style={{cursor:"pointer"}}
-              >
-
-                <td>
-                  <img src={c.flags.png} width="40" alt="flag"/>
-                </td>
-
-                <td>{c.name.common}</td>
-
-                <td>{c.capital?.[0]}</td>
-
-                <td>{c.region}</td>
-
-                <td>{c.population}</td>
-
+              <tr>
+                <th>Flag</th>
+                <th>Name</th>
+                <th>Capital</th>
+                <th>Region</th>
+                <th>Population</th>
               </tr>
 
-            ))}
+            </thead>
 
-          </tbody>
+            <tbody>
 
-        </table>
+              {countries.map(c => (
 
-      )}
+                <tr
+                  key={c.cca3}
+                  onClick={() => selectCountry(c)}
+                  style={{cursor:"pointer"}}
+                >
 
-      <CountryCard country={country}/>
+                  <td>
+                    <img src={c.flags.png} width="40" alt="flag"/>
+                  </td>
+
+                  <td>{c.name.common}</td>
+
+                  <td>{c.capital?.[0]}</td>
+
+                  <td>{c.region}</td>
+
+                  <td>{c.population.toLocaleString()}</td>
+
+                </tr>
+
+              ))}
+
+            </tbody>
+
+          </table>
+
+        )}
+
+        <CountryCard country={country}/>
+
+      </div>
 
     </div>
 
   );
+
 }
 
 export default App;
